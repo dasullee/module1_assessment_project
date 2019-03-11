@@ -45,11 +45,6 @@ function buildCard(suit, cardValue){
 
 function shuffleCards( cardDeck ){
     var copy = cardDeck.slice(0,cardDeck.length);
-    //QUESTION FROM NICOLE TO AN INSTRUCTOR
-    //I have tried to make a copy of the cardDeck array. However, when I add the "ranNum" key-value pair to the "copy" array, it also adds "ranNum" to cardDeck
-    //When I googled this, it mentioned that this had to do with pass-by and reference variables
-    //How would I make a pass-by copy of the cardDeck array?
-    
     var bucket = [];
     var newArray = [];
     var ranArray = [];
@@ -66,8 +61,6 @@ function shuffleCards( cardDeck ){
         copy[x].ranNum = newArray[x];
     }
 
-    //I would hope that because I did not mess with "cardDeck" in this function, this would only give me a cardValue and a suit
-    //However, this gives me a "ranNum" as well
     for (var y=0; y<newArray.length; y++){
             ranArray[copy[y].ranNum] = cardDeck[y];
         
@@ -76,13 +69,11 @@ function shuffleCards( cardDeck ){
 }
 
 function dealCards(num, cardDeck){
-    var total = "";
     var dealed = cardDeck.slice(0,num);
     console.log(dealed);
     
     for (var i = 0; i<dealed.length; i++) {
-        var strCall = "<div class=\"card " + dealed[i].suit + " " + dealed[i].cardValue + "\"></div>";
-        $(".card-container").append(strCall);
+        $("<div>").addClass("card " + dealed[i].suit + " " + dealed[i].cardValue ).appendTo(".card-container");
     }
     
 }
